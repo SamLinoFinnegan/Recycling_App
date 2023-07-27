@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if get_flashed_messages() %}
+<div class="flash_mgs">
+    <ul>
+{% for msg in get_flashed_messages()%}
+
+    <li>{{msg}}</li>
+
+{% endfor%}
+</ul>
+</div>
+{% endif%}
+
+<div class="mission_container">
+    <div class="mission_header">
+        <h1>Our Mission</h1>
+    </div>
+    <div class="the_mission">
+        <p>
+            Recycling properly ensures that materials are sorted and processed 
+            correctly, maximizing the benefits of recycling. Proper recycling reduces waste, conserves natural resources, saves energy, 
+            and reduces greenhouse gas emissions. It also helps to create jobs in the recycling industry and supports sustainable practices. 
+            When materials are recycled properly, they can be transformed into new products, reducing the need for virgin materials and promoting a circular economy.
+             Additionally, proper recycling reduces contamination in recycling streams, making the process more efficient and effective. Overall,
+             recycling properly is crucial for realizing the full benefits of recycling and achieving a more sustainable future.
+        </p>
+        <div class="get_started_container">
+            <a href="/home">
+                <div class="get_started_button">
+                    <p>Recycle now</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,26 @@
+name,pack,trigger,bin
+Tetra Pak,Composite,nan,General Waste
+Paper Coffee Cup,Paper/Compostable,nan,General Waste
+Yoghurt Pot,Plastic,Remove cover,Dry Mixed Recycles
+Coffee Cup,Plastic,nan,Dry Mixed Recycles
+Crisp Packets,Composite,nan,General Waste
+Wrappers,Composite,nan,General Waste
+Take Away Paper Bags,paper,nan,Dry Mixed Recycles
+Plastic Food Container,Plastic,nan,Dry Mixed Recycles
+Boxes,paper/cardboard,nan,Dry Mixed Recycles
+Cans,Aluminium,No liquid,Dry Mixed Recycles
+Plastic Bottles,Plastic,No liquid,Dry Mixed Recycles
+Food Waste,Food,nan,Food Waste
+Glass Items,Glass,nan,Glass Waste
+Paper,Paper,nan,Dry Mixed Recycles
+Cling Film,plastic,nan,General Waste
+Tissue,Composite,nan,General Waste
+Coffee Cup Lid,plastic,nan,Dry Mixed Recycles
+Tin Foil,Foil,nan,Dry Mixed Recycles
+Tea Bags,Food,nan,Food Waste
+Polysterene Items,Polysterene,nan,General Waste
+Pens And Pencils,Other,nan,General Waste
+Wooden Stirrers,wood,nan,General Waste
+Paper Straw,paper,nan,General Waste
+Sandwich Packet,Mixed,Remove Plastic,Dry Mixed Recycles
+Contaminated Items,Mixed,nan,General Waste

@@ -1,0 +1,56 @@
+.mission_container{
+    padding: 10% 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+}
+
+
+.mission_header h1{
+    font-family: 'Fraunces 120pt';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 64px;
+    line-height: 79px;
+    color: #000000;
+}
+
+.the_mission{
+    width: 70%;
+    margin: auto;
+    font-family: 'Helvetica';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 45px;
+}
+.get_started_container a{
+    margin: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.get_started_button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 133px;
+    height: 47px;
+    background: #403F2B;
+    border: 2px solid #403F2B;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 25px;
+}
+.get_started_button p{
+    text-align: center;
+    width: 93px;
+    height: 17px;
+    font-family: 'Helvetica';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 17px;
+    color: #E8E59B;
+}

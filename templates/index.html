@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if get_flashed_messages() %}
+<div class="flash_mgs">
+    <ul>
+{% for msg in get_flashed_messages()%}
+
+    <li>{{msg}}</li>
+
+{% endfor%}
+</ul>
+</div>
+{% endif%}
+
+
+<div class="welcome_out_container">
+    <div class="welcome_img_container">
+        <div class="w_img">
+            <img src="../static/images/recycling_world.png" alt="recycling_planet">
+        </div>
+    </div>
+    <div class="welcome_text_container">
+        <div class="w_text">
+            <div class="w_text_header">
+                <h1>Brainy Bin</h1>
+            </div>
+            <div class="w_text_p">
+                <p>Using technology to manage recycling</p>
+
+            </div>
+                <div class="w_text_buttons">
+                    <div class="start_button_cont">
+                        <a href="/home">
+                            <div class="w_text_buttons_start">
+                                <p>Start Now</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="mission_button_cont">
+                        <a href="/mission">
+                            <div class="w_text_buttons_mission">
+                                <p>Our Mission</p>
+                            </div>
+                        </a>
+                    </div>
+            </div>
+
+    </div>
+    </div>
+</div>
+
+{% endblock %}

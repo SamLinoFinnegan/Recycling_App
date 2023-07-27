@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if get_flashed_messages() %}
+<div class="flash_mgs">
+    <ul>
+{% for msg in get_flashed_messages()%}
+
+    <li>{{msg}}</li>
+
+{% endfor%}
+</ul>
+</div>
+{% endif%}
+<div class="out_ad_container">
+<div class="login_form_container">
+    <form class="form" method="post" enctype=multipart/form-data>
+        <label for="product">Product: </label>
+        <input type="text" name="product">
+        <label for="description">Description: </label>
+        <input type="text" name="description">
+        <label for="packaging">Packaging: </label>
+        <input type="text" name="packaging">
+        <label for="image">Image: </label>
+        <input type="file" name="image">
+        <input type="submit" name="add_product" id="add_product">
+    </form>
+</div>
+
+<div class="a_p_container">
+    {% for product in prods %}
+    <form class="update_form" method="post">
+        <label for="delete_product">{{product.name}}</label>
+        <input type="text" name="delete_product" value={{product.name}} hidden>
+        <input type="submit" id="delete_product" name="delete" value="delete">
+    </form>
+    {% endfor %}
+</div>
+</div>
+
+{% endblock %}

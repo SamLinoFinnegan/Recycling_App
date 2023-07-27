@@ -1,0 +1,141 @@
+*{
+    padding:0;
+    margin: 0;
+}
+.popup_div{
+    width: 100%;
+    display: flex;
+    margin-top: 100px;
+    justify-content: center;
+}
+.popup {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    font-family: 'Lato';
+    font-style: normal;
+    color: #263238;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transform: translate(-50%, -50%);
+    opacity: 1;
+    width: 693px;
+    height: 653px;
+    background: #FBFBFA;
+    border: solid 1px #555f6473;
+    box-shadow: 0px 5px 9px rgba(0, 0, 0, 0.25);
+    border-radius: 60px;
+}
+
+
+
+.bin_header_container{
+    text-align: center;
+    width: 100%;
+
+}
+
+.warning_container{
+    background: #F1F1E9;
+    padding-top: 27px;
+    padding-bottom: 15px;
+    width: 100%;
+    border-radius: 60px 60px 0px 0px;
+    
+}
+.warning_wraper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    margin: auto;
+}
+.warning_div{
+    text-align: start;
+    margin-left: 21px;
+}
+.dont_forget_msg,.warning_message{
+    font-family: 'Lato';
+    font-style: normal;
+    
+    
+}
+.dont_forget_msg{
+    font-style: bold;
+    font-weight: 700;
+    color: #263238;
+}
+.warning_message{
+    color: #505f66;
+}
+.warning_img_div{
+    height: 40px;
+    width: 40px;
+}
+.warning_img{
+    height: 100%;
+    width: 100%;
+}
+
+.dispose_msg_div{
+    margin: auto;
+    width: 333px;
+    height: 66px;
+    margin-top: 20px;
+    margin-bottom: 28px;
+}
+.dispose_msg{
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    color: #263238;
+}
+.pop_up_img_div{
+    width: 212px;
+    height: 204.55px;
+    background: #FFFFFF;
+    border: 10px solid #403F2B;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    }
+.pop_up_img{
+    border-radius: 20px; 
+    height: 100%;
+    width: 100%;
+}
+.bin_container{
+    display: flex;
+    justify-content: space-evenly;
+    width: 450;
+    margin-top: 5px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: auto;
+}
+.name_bin_container{
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   
+
+}
+
+.green{
+    margin-top: 7px;
+    margin-bottom: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 180px;
+    height: 90px;
+    border-radius: 20px;
+    background-color: green;
+}
+
+
+  

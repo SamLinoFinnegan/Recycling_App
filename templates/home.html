@@ -1,0 +1,363 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if get_flashed_messages() %}
+<div class="flash_mgs">
+    <ul>
+{% for msg in get_flashed_messages()%}
+
+    <li>{{msg}}</li>
+
+{% endfor%}
+</ul>
+</div>
+{% endif%}
+
+<div id="container" class="container">
+    <div id="home_header_box" class="home_header_box">
+        <div class="right_header_box">
+        </div>
+        <div class="left_header_box">
+            <p>
+                Recycling contamination leads to more waste because contaminated materials are often rejected by recycling facilities 
+                and end up in landfills or incinerators. This undermines the efforts of individuals 
+                and communities to reduce waste and promote sustainability, ultimately contributing to environmental degradation and resource depletion.
+            </p>
+        </div>
+    </div>
+    <div class="search_container">
+        <div class="search_header">
+            <h3>Select the item you want to recycle</h3>
+        </div>
+        <div id="search_bar" class="search_bar">
+            
+            <input type="text" name="search" id="search" placeholder="Search for product"> 
+            <p id="error" class="error"></p>
+            <button id="src_btn">Search</button>
+        </div>
+    </div>
+    <div class="pop_up_container">
+    
+    </div>
+    <div class="grid_container">
+        <div id="product_table" class="product_table">
+            {% for item in prod %}
+            <div class="product" id="{{item}}">
+                <button class="item_btns" id="{{item}}">
+                    <div class="img_container">
+                        <img src="../static/images/{{item}}.png" alt="{{item}}">
+                    </div>
+                </button>
+                <div class="p_div_header">
+                    <p class="item_name">{{item}}</p>
+                </div>           
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+
+    </div>
+    <script>
+
+        // variables
+        const home_header_box = document.getElementById("home_header_box");
+        const pop_up_container = document.querySelector(".pop_up_container");
+        const myObj = JSON.parse('{{ prod_obj|tojson|safe }}');
+        const product_table = document.getElementById("product_table");
+        const item_btns = document.getElementsByClassName("item_btns");
+        const src_btn = document.getElementById("src_btn");
+        let products = document.getElementsByClassName("product");
+        let src_value = document.getElementById("search");
+        
+        // functions
+
+
+        const add_space = async (class_name, place) => {
+            try{
+                const item_names = document.getElementsByClassName(class_name);
+                const arr = await Array.from(item_names)
+                
+                arr.forEach(name => {
+                    
+                    let new_name = ""
+                    l_name = name[place].split("")
+                    l_name.forEach(letter => {
+                        if(letter === letter.toUpperCase()){
+                            new_name += " "
+                        }
+                        new_name += letter
+                    })
+                    
+                    name[place] = new_name
+            })
+            
+            }catch (error) {
+                console.log(error);
+            } 
+        }
+        
+       
+        // Function to create and append a child element to a parent element
+            function appendChild(parent, child) {
+                parent.appendChild(child);
+            }
+
+            // Function to create and add a class name to an element
+            function createElementWithClass(elementType, className) {
+                const element = document.createElement(elementType);
+                element.className = className;
+                return element;
+            }
+        
+
+            // Function to create a button element with the given id and text
+            function createButton(id, text) {
+                const button = document.createElement("button");
+                button.id = id;
+                button.innerText = text;
+                return button;
+            }
+
+            // Function to handle the click event for the "Yes" button
+            function handleYesButtonClick(button, item, img, bin_header, bin_container, name_bin_container, second_name_bin_container, name, first_bin, second_name,second_bin) {
+                img.src = `../static/images/${button.id}.png`;
+                bin_header.textContent = "Please make sure first to " + item.trigger;
+
+                name_bin_container.innerHTML = null;
+                second_name_bin_container.innerHTML = null;
+
+                appendChild(name_bin_container, name);
+                appendChild(name_bin_container, first_bin);
+                appendChild(second_name_bin_container, second_name);
+                appendChild(second_name_bin_container, second_bin);
+                appendChild(bin_container, name_bin_container);
+                
+
+            }
+
+            // Function to handle the click event for the "No" button
+            function handleNoButtonClick() {
+            alert("Please make sure to clean the pot before throwing away!");
+            }
+
+            // Function to handle the click event for the item button
+            function handleItemButtonClick(button) {
+                const my_id = button.id.replace(/([a-z])([A-Z])/g, "$1 $2");
+                const item = myObj.find((item) => item.name === my_id);
+
+                if (item) {
+                    const frag = document.createDocumentFragment();
+                    const pop_up_div = createElementWithClass("div", "popup_div");
+                    const pop_up = createElementWithClass("div", "popup");
+                    const bin_header_div = createElementWithClass("div", "bin_header_container");
+
+                    // Warning area
+                    const warning_container = createElementWithClass("div", "warning_container");
+                    const warning_wraper = createElementWithClass("div", "warning_wraper");
+
+                    // Warning image
+                    const warning_img_div = createElementWithClass("div", "warning_img_div");
+                    const warning_img = createElementWithClass("img", "warning_img");
+                    warning_img.src = `../static/images/warning.png`;
+                    appendChild(warning_img_div, warning_img);
+
+                    // Warning text
+                    const warning_div = createElementWithClass("div", "warning_div");
+                    const dont_forget_msg = createElementWithClass("h4", "dont_forget_msg");
+                    const warning_message = createElementWithClass("h4", "warning_message");
+                    dont_forget_msg.textContent = `Don't forget!`;
+                    warning_message.textContent = `The trash must be thrown empty, without residues!`;
+                    appendChild(warning_div, dont_forget_msg);
+                    appendChild(warning_div, warning_message);
+
+                    appendChild(warning_wraper, warning_img_div);
+                    appendChild(warning_wraper, warning_div);
+                    appendChild(warning_container, warning_wraper);
+
+                    // Dispose text
+                    const dispose_msg_div = createElementWithClass("div", "dispose_msg_div");
+                    const dispose_msg = createElementWithClass("h4", "dispose_msg");
+                    dispose_msg.textContent = "Please deposit your item in the following bin";
+                    appendChild(dispose_msg_div, dispose_msg);
+
+                    // Pop-up image
+                    const pop_up_img_div = createElementWithClass("div", "pop_up_img_div");
+                    const img = createElementWithClass("img", "pop_up_img");
+                    img.src = `../static/images/${button.id}.png`;
+                    appendChild(pop_up_img_div, img);
+
+                    // Bin container
+                    const bin_container = createElementWithClass("div", "bin_container");
+                    const name_bin_container = createElementWithClass("div", "name_bin_container");
+                    const name = createElementWithClass("h4", "name");
+                    name.textContent = item.name
+                    const first_bin = createElementWithClass("div");
+                    const first_bin_text = createElementWithClass("h4","bin_text");
+                    first_bin_text.textContent = item.bin
+                    
+                    appendChild(first_bin, first_bin_text);
+                    appendChild(name_bin_container, name);
+                    appendChild(name_bin_container, first_bin);
+                    appendChild(bin_container, name_bin_container);
+
+                    // Append elements to build the structure
+                    appendChild(bin_header_div, warning_container);
+                    appendChild(bin_header_div, dispose_msg_div);
+                    appendChild(pop_up, bin_header_div);
+                    appendChild(pop_up, pop_up_img_div);
+                    appendChild(pop_up, bin_container);
+                    appendChild(frag, pop_up);
+   
+
+                    if (item.bin === "General Waste") {
+                        first_bin.className = "red";
+                    } else if (item.bin === "Dry Mixed Recycles") {
+                        first_bin.className = "green";
+                    } else if (item.bin === "Food Waste") {
+                        first_bin.className = "black";
+                    } else if (item.bin === "Glass Waste") {
+                        first_bin.className = "blue";
+                    }
+
+                    if (item.trigger !== "nan") {
+                    if (item.trigger === "Remove Plastic" || item.trigger === "Remove cover") {
+                        dispose_msg.textContent = "Please make sure first to " + item.trigger;
+
+                        const arr = item.trigger.split(" ");
+                        
+                        const second_name_bin_container = createElementWithClass("div", "name_bin_container")
+                        const second_name = createElementWithClass("h3", "name");
+                        second_name.textContent = arr[1]
+
+                        const second_bin = createElementWithClass("div", "red");
+                        const second_bin_text = createElementWithClass("h3", "bin_text");
+                        second_bin_text.textContent = "General Waste";
+                        appendChild(second_bin, second_bin_text)
+                        
+                        appendChild(name_bin_container, name);
+                        appendChild(name_bin_container, first_bin);
+                        appendChild(second_name_bin_container, second_name);
+                        appendChild(second_name_bin_container, second_bin);
+                        appendChild(bin_container, name_bin_container);
+                        appendChild(bin_container, second_name_bin_container);
+                            
+
+                    } else if (item.trigger === "No liquid") {
+                        dispose_msg.textContent = "Please make sure that there is " + item.trigger;
+                        appendChild(name_bin_container, first_bin);
+                        appendChild(bin_container, name_bin_container);
+                    }
+                    } else {
+                        dispose_msg.textContent = "Please deposit your item in the following bin";
+                        appendChild(name_bin_container, name);
+                        appendChild(name_bin_container, first_bin);
+                        appendChild(bin_container, name_bin_container);
+                    }
+
+                    home_header_box.classList.add("blured");
+                    product_table.classList.add("blured");
+                    appendChild(pop_up_container, frag)
+                    pop_up.scrollIntoView({ block: 'start', behavior: 'smooth' });
+                }
+            }
+
+           
+            
+            Array.from(item_btns).forEach((button) => {
+            button.addEventListener("click", () => {
+                handleItemButtonClick(button);
+            });
+            });
+
+            
+        
+            document.addEventListener("click", () => {
+            try {
+                const pop_up = document.querySelector(".popup");
+                if (pop_up) {
+                
+                document.addEventListener("click", (event) => {
+                    // Check if the click event was outside of the pop_up_container
+                    if (pop_up.className === "popup") {
+
+                        home_header_box.classList.add("blured");
+                        product_table.classList.add("blured");
+                        if (!pop_up.contains(event.target)) {
+                            product_table.classList.remove("blured");
+                            home_header_box.classList.remove("blured");
+
+                            pop_up.className = "";
+                            pop_up.remove();
+                        }
+                    }
+                });
+                }
+            } catch (error) {
+                console.log(error);
+            }
+            });
+
+
+        const search_database = () => {
+            try{
+                if(triger){
+                    location.reload()
+                }
+            }catch(error){
+                console.log(error)
+            }
+            
+            let src_value = document.getElementById("search").value.toUpperCase();
+            const eror = document.getElementById("error");
+            error.className = "error"
+
+            error.textContent =""
+            if (!src_value){
+                
+                error.textContent ="You must type in the product you would like to search"
+
+            }else{
+                error.textContent =""
+                const arr = []
+                
+
+                for (let i =0; i< products.length; i++){
+                    
+                    if(products[i].id.toUpperCase().indexOf(src_value.toUpperCase()) === -1){
+                        
+                        products[i].id = "none"
+                        arr.push(products[i])
+                    
+                    }
+                    arr.push(products[i])
+
+                }
+                let boolean_arr = []
+                arr.forEach(element =>{
+                    if (element.id !== "none"){
+                        boolean_arr.push(false)
+                    }else{
+                        boolean_arr.push(true)
+                    }
+                })
+                if(boolean_arr.every(element => element)){
+                        let new_element = document.createElement("h1").innerHTML = "there are no products with that name"
+                        new_element.className = "error"
+                        
+                        product_table.append(new_element)
+                    }
+            }
+            
+        }
+        
+        add_space("item_name", "textContent")
+        add_space("product", "id")
+
+        
+        src_btn.addEventListener("click", search_database)
+    </script>
+</div>
+
+{% endblock %}
