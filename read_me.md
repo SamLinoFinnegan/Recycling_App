@@ -1,6 +1,6 @@
 # Recycling Web Tool
 
-![Recycling Web Tool Banner](./static/images/lets_recycle.png)
+![Recycling Web Tool Banner](./static/images/recycling_world.png)
 
 ## Table of Contents
 
