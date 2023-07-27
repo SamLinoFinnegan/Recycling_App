@@ -34,7 +34,7 @@ Welcome to the Recycling Web Tool! This web application is designed to help user
 
 To get a local copy of this project up and running on your machine, follow these steps:
 
-1. Clone this repository: `git clone https://github.com/SamLinoFinnegan/Anas_Recycling_app.git`
+1. Clone this repository: `git clone https://github.com/SamLinoFinnegan/Recycling_App.git`
 2. Navigate to the project directory: `cd project directory`
 3. Install dependencies: `pip install -r requirements.txt`
 4. First run `python db.py` to create a test database
@@ -52,9 +52,17 @@ The recycling web tool uses SQLite as its database to store information about di
 
 The `Products.db` SQLite database file contains the following tables:
 
-1. `Item`: Contains information about each item, including its name and description.
-2. `DisposalSteps`: Stores any additional steps that need to be taken before disposing of an item.
-3. `RecyclingBin`: Stores the correct bin for recycling each item.
+The Product table:
+
+1. `name`: Contains the product name.
+2. `trigger`: Contains a trigger that will let the user know if there are any steps to take before disposing of the item.
+3. `pack`: Type of material the item contains.
+4. `bin`: Stores the correct bin for recycling each item.
+   
+The User table:
+
+1. `name`:The username (admin)
+2. `password`: The user password (admin)
 
 Please refer to the `models.py` file for the database schema and the `db.py` file for pre-populated data.
 
